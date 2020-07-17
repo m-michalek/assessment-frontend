@@ -68,10 +68,19 @@
       </div>
       <!-- own component -->
 
+      <!-- Data from API  -->
       <ButtonList title="Episodes:" v-bind:buttons="charactersDetails.episode" basePath="episodes" />
-      <ButtonList title="Locations:" v-bind:mockData="['Earth (C-137)', 'Abadango', 'Bepis 9']" />
-      <ButtonList title="Spaceship:" v-bind:mockData="['Executor', 'Death Start']" />
-      <ButtonList title="Vehicles:" v-bind:mockData="['Sand Crawler', 'Snowspeeder', 'AT-AT']" />
+
+      <!-- Mocked data because API does not provide -->
+      <ButtonList
+        title="Locations:"
+        v-bind:mockData="['Gromflom Prime', 'Giant\'s Town', 'Bird World', 'Earth (5-126)']"
+      />
+      <ButtonList
+        title="Spaceship:"
+        v-bind:mockData="['HMS', 'Battlecruiser', 'Executor', 'Death Start', 'Battleship', 'Shadow Glider']"
+      />
+      <ButtonList title="Vehicles:" v-bind:mockData="['Sand Crawler', 'Moon Speeder', 'Bike']" />
     </div>
   </div>
 </template>

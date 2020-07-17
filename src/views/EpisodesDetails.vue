@@ -66,14 +66,9 @@
       <ButtonList
         title="Planets:"
         v-bind:mockData="['Earth (C-137)', 'Abadango', 'Post-Apocalyptic Earth']"
-        basePath="characters"
       />
-      <ButtonList title="Spaceship:" v-bind:mockData="['Space Cruiser']" basePath="characters" />
-      <ButtonList
-        title="Vehicle:"
-        v-bind:mockData="['Space Cruiser', 'Sand Crawler', 'Car']"
-        basePath="characters"
-      />
+      <ButtonList title="Spaceship:" v-bind:mockData="['Space Cruiser']" />
+      <ButtonList title="Vehicle:" v-bind:mockData="['Space Cruiser', 'Sand Crawler', 'Car']" />
     </div>
   </div>
 </template>
