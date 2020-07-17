@@ -6,7 +6,7 @@
 
     <ContentHeader topTitle="Charactersdetails" v-bind:mainTitle="charactersDetails.name" />
     <div class="container fd-col">
-      <!-- own component -->
+      <!-- TODO: Move to own component -->
       <div class="flex w-100 sm-flex-col">
         <div class="w-100">
           <div class="flex fd-col sm-align-items-center">

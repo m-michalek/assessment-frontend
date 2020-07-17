@@ -118,6 +118,10 @@ body {
   max-width: 100%;
 }
 
+.max-w-400 {
+  max-width: 400px;
+}
+
 .w-100 {
   width: 100%;
 }
