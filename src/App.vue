@@ -280,4 +280,142 @@ body {
 }
 
 /** Characters.vue **/
+
+/** Global medial queries */
+
+@media (max-width: 300px) {
+  .nav-links > a {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+  }
+
+  .nav-search-bar {
+    display: none !important;
+  }
+
+  .card-gird {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .sm-flex-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sm-justify-content-center {
+    justify-content: center;
+  }
+
+  .sm-fd-col {
+    flex-direction: column;
+  }
+
+  .sm-align-items-center {
+    align-items: center;
+  }
+
+  .sm-ta-center {
+    text-align: center;
+  }
+
+  .sm-mt-20 {
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 600px) {
+  .nav-links > a {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+  }
+
+  .nav-search-bar {
+    display: none !important;
+  }
+
+  .card-gird {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .sm-flex-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sm-justify-content-center {
+    justify-content: center;
+  }
+
+  .sm-fd-col {
+    flex-direction: column;
+  }
+
+  .sm-align-items-center {
+    align-items: center;
+  }
+
+  .sm-ta-center {
+    text-align: center;
+  }
+
+  .sm-mt-20 {
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+  .nav-links > a {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+  }
+
+  .container {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  .card-gird {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1000px) {
+  .nav-links > a {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+  }
+
+  .container {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
+  .card-gird {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1904px) {
+  .container {
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+
+  .card-gird {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1904px) {
+  .container {
+    margin-left: 250px;
+    margin-right: 250px;
+  }
+
+  .card-gird {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/** Global medial queries **/
 </style>
