@@ -1,5 +1,9 @@
 <template>
   <div v-if="charactersDetails" class="characters-details">
+    <!-- Modal -->
+    <Modal v-if="modalStatus" />
+    <!-- Modal -->
+
     <ContentHeader topTitle="Charactersdetails" v-bind:mainTitle="charactersDetails.name" />
     <div class="container fd-col">
       <!-- own component -->
@@ -63,17 +67,26 @@
         </div>
       </div>
       <!-- own component -->
+
+      <ButtonList title="Episodes:" v-bind:buttons="charactersDetails.episode" basePath="episodes" />
+      <ButtonList title="Locations:" v-bind:mockData="['Earth (C-137)', 'Abadango', 'Bepis 9']" />
+      <ButtonList title="Spaceship:" v-bind:mockData="['Executor', 'Death Start']" />
+      <ButtonList title="Vehicles:" v-bind:mockData="['Sand Crawler', 'Snowspeeder', 'AT-AT']" />
     </div>
   </div>
 </template>
 
 <script>
 import ContentHeader from "@/components/ContentHeader.vue";
+import ButtonList from "@/components/ButtonList.vue";
+import Modal from "@/components/Modal.vue";
 
 export default {
   name: "CharactersDetails",
   components: {
-    ContentHeader
+    ContentHeader,
+    ButtonList,
+    Modal
   },
   data() {
     return {

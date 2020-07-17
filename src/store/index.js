@@ -11,12 +11,14 @@ export default new Vuex.Store({
     charactersDetails: null,
     episodes: null,
     locations: null,
+    modalStatus: false,
   },
   mutations: {
     fetchCharacters: (state, payload) => (state.characters = payload),
     fetchCharacterById: (state, payload) => (state.charactersDetails = payload),
     fetchEpisodes: (state, payload) => (state.episodes = payload),
     fetchLocations: (state, payload) => (state.locations = payload),
+    toggleModal: (state) => (state.modalStatus = !state.modalStatus),
   },
   actions: {
     fetchCharacters: async ({ commit }) => {
@@ -37,12 +39,16 @@ export default new Vuex.Store({
       const response = await axios("https://rickandmortyapi.com/api/location");
       commit("fetchLocations", response.data.results);
     },
+    toggleModal: async ({ commit }) => {
+      commit("toggleModal");
+    },
   },
   getters: {
     getCharacters: (state) => state.characters,
     getCharactersDetails: (state) => state.charactersDetails,
     getEpisodes: (state) => state.episodes,
     getLocations: (state) => state.locations,
+    getModalStatus: (state) => state.modalStatus,
   },
   modules: {},
 });
