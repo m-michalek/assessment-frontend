@@ -4,7 +4,12 @@
 
 <script>
 export default {
-  name: "Characters"
+  name: "Characters",
+  created() {
+    if (!this.$store.getters.getCharacters) {
+      this.$store.dispatch("fetchCharacters");
+    }
+  },
 };
 </script>
 

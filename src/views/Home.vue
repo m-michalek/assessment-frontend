@@ -1,14 +1,31 @@
 <template>
   <div class="home">
     <div class="container justify-content-center logo-sizer">
-      <img src="@/assets/Rick_and_Morty_white.svg" alt="Rick and Morty logo" width="100%" />
+      <img
+        src="@/assets/Rick_and_Morty_white.svg"
+        alt="Rick and Morty logo"
+        width="100%"
+      />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home"
+  name: "Home",
+  created() {
+    if (!this.$store.getters.getCharacters) {
+      this.$store.dispatch("fetchCharacters");
+    }
+
+    if (!this.$store.getters.getEpisodes) {
+      this.$store.dispatch("fetchEpisodes");
+    }
+
+    if (!this.$store.getters.getLocations) {
+      this.$store.dispatch("fetchLocations");
+    }
+  },
 };
 </script>
 

@@ -4,7 +4,12 @@
 
 <script>
 export default {
-  name: "Locations"
+  name: "Locations",
+  created() {
+    if (!this.$store.getters.getLocations) {
+      this.$store.dispatch("fetchLocations");
+    }
+  },
 };
 </script>
 

@@ -4,7 +4,12 @@
 
 <script>
 export default {
-  name: "Episodess"
+  name: "Episodess",
+  created() {
+    if (!this.$store.getters.getEpisodes) {
+      this.$store.dispatch("fetchEpisodes");
+    }
+  },
 };
 </script>
 
