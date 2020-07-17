@@ -33,9 +33,17 @@ body {
   height: 100%;
 }
 
+a {
+  font-family: "Roboto", sans-serif !important;
+}
+
 /** Colors */
 .white-100 {
   color: #ffffff;
+}
+
+.bg-white-200 {
+  background-color: #f8f8f8;
 }
 
 .blue-900 {
@@ -46,7 +54,7 @@ body {
 /** App.vue */
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* text-align: center; */

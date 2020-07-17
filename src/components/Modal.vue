@@ -19,7 +19,10 @@
             </div>
             <div class="flex w-100">
               <TextInput title="Year of birth" placeholder="YYYY" class="w-100" />
-              <TextInput title="Gender" placeholder="Male" class="w-100" />
+              <DropdownInput title="Gender" placeholder="Male" class="w-100" />
+            </div>
+            <div class="flex w-100">
+              <TextareaInput title="Description" placeholder="Enter description" class="w-100" />
             </div>
             <div class="flex w-100 fs-08 justify-content-end mt-10 pt-20 pb-30">
               <div v-on:click="onButtonClicked()" class="btn bold">Abort</div>
@@ -33,12 +36,16 @@
 </template>
 
 <script>
-import TextInput from "@/components/TextInput.vue";
+import TextInput from "@/components/input/TextInput.vue";
+import DropdownInput from "@/components/input/DropdownInput.vue";
+import TextareaInput from "@/components/input/TextareaInput.vue";
 
 export default {
   name: "Modal",
   components: {
-    TextInput
+    TextInput,
+    DropdownInput,
+    TextareaInput
   },
   methods: {
     onButtonClicked() {
