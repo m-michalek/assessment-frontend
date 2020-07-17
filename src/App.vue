@@ -3,16 +3,24 @@
     <Header />
     <div>
       <router-view class="main-content" />
+      <Footer v-if="!isHomePage()" />
     </div>
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   components: {
-    Header
+    Header,
+    Footer
+  },
+  methods: {
+    isHomePage() {
+      return this.$router.currentRoute.fullPath === "/" ? true : false;
+    }
   }
 };
 </script>
@@ -47,5 +55,11 @@ body {
 
   display: flex;
   align-items: center;
+}
+
+.main-content {
+  /* height: 100%; */
+
+  overflow: auto;
 }
 </style>
