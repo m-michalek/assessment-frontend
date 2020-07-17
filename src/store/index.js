@@ -8,11 +8,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     characters: null,
+    charactersDetails: null,
     episodes: null,
     locations: null,
   },
   mutations: {
     fetchCharacters: (state, payload) => (state.characters = payload),
+    fetchCharacterById: (state, payload) => (state.charactersDetails = payload),
     fetchEpisodes: (state, payload) => (state.episodes = payload),
     fetchLocations: (state, payload) => (state.locations = payload),
   },
@@ -20,6 +22,12 @@ export default new Vuex.Store({
     fetchCharacters: async ({ commit }) => {
       const response = await axios("https://rickandmortyapi.com/api/character");
       commit("fetchCharacters", response.data.results);
+    },
+    fetchCharacterById: async ({ commit }, id) => {
+      const response = await axios(
+        `https://rickandmortyapi.com/api/character/${id}`
+      );
+      commit("fetchCharacterById", response.data);
     },
     fetchEpisodes: async ({ commit }) => {
       const response = await axios("https://rickandmortyapi.com/api/episode");
@@ -32,6 +40,7 @@ export default new Vuex.Store({
   },
   getters: {
     getCharacters: (state) => state.characters,
+    getCharactersDetails: (state) => state.charactersDetails,
     getEpisodes: (state) => state.episodes,
     getLocations: (state) => state.locations,
   },
