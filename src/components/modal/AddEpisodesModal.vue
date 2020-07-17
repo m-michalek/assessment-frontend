@@ -1,32 +1,32 @@
 <template>
   <transition name="modal-fade" appear>
-    <div class="modal">
+    <div class="add-episodes-modal">
       <div class="h-100 flex align-items-center justify-content-center">
         <div class="modal-content" style="width: 400px; height: fit-content;">
-          <h3 class="flex justify-content-center">Add character</h3>
+          <h3 class="flex justify-content-center">Add episode</h3>
 
           <div class="pl-40 pr-40">
             <div class="w-100">
               <TextInput title="Name" placeholder="Enter name" />
             </div>
-            <div class="flex w-100">
-              <TextInput title="Size" placeholder="Meter" class="w-100" />
-              <TextInput title="Weight" placeholder="Kg" class="w-100" />
+            <div class="w-100">
+              <TextInput title="Director" placeholder="Enter name" />
             </div>
             <div class="flex w-100">
-              <TextInput title="Hair color" placeholder="Enter hair color" class="w-100" />
-              <TextInput title="Eye color" placeholder="Yellow" class="w-100" />
+              <DropdownInput title="Regisseur" placeholder="Pete Michels" class="w-100" />
             </div>
-            <div class="flex w-100">
-              <TextInput title="Year of birth" placeholder="YYYY" class="w-100" />
-              <DropdownInput title="Gender" placeholder="Male" class="w-100" />
+            <div class="flex w-50">
+              <TextInput title="On air date" placeholder="YYYY" class="w-100" />
             </div>
             <div class="flex w-100">
               <TextareaInput title="Description" placeholder="Enter description" class="w-100" />
             </div>
             <div class="flex w-100 fs-08 justify-content-end mt-10 pt-20 pb-30">
-              <div v-on:click="onButtonClicked()" class="btn bold">Abort</div>
-              <div v-on:click="onButtonClicked()" class="btn btn-primary white-100 bold">Add episode</div>
+              <div v-on:click="onToggleModalButtonClicked()" class="btn bold">Abort</div>
+              <div
+                v-on:click="onToggleModalButtonClicked()"
+                class="btn btn-primary white-100 bold"
+              >Add episode</div>
             </div>
           </div>
         </div>
@@ -48,15 +48,15 @@ export default {
     TextareaInput
   },
   methods: {
-    onButtonClicked() {
-      this.$store.dispatch("toggleModal");
+    onToggleModalButtonClicked() {
+      this.$store.dispatch("toggleModal", "");
     }
   }
 };
 </script>
 
 <style scoped>
-.modal {
+.add-episodes-modal {
   z-index: 100;
 
   height: 100vh;

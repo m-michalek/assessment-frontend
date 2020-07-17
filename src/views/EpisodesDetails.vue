@@ -1,7 +1,10 @@
 <template>
   <div v-if="episodesDetails" class="episodes-details">
     <!-- Modal -->
-    <Modal v-if="modalStatus" />
+    <AddEpisodesModal v-if="activeModal === 'AddEpisodesModal'" />
+    <AddCharactersModal v-if="activeModal === 'AddCharactersModal'" />
+    <AddLocationsModal v-if="activeModal === 'AddLocationsModal'" />
+    <DefaultModal v-if="activeModal === 'DefaultModal'" />
     <!-- Modal -->
 
     <ContentHeader topTitle="Episodesdetails" v-bind:mainTitle="episodesDetails.name" />
@@ -60,15 +63,21 @@
         title="Characters:"
         v-bind:buttons="episodesDetails.characters"
         basePath="characters"
+        openModal="AddCharactersModal"
       />
 
       <!-- Mocked data because API does not provide -->
       <ButtonList
         title="Planets:"
         v-bind:mockData="['Earth (C-137)', 'Abadango', 'Post-Apocalyptic Earth']"
+        openModal="AddLocationsModal"
       />
-      <ButtonList title="Spaceship:" v-bind:mockData="['Space Cruiser']" />
-      <ButtonList title="Vehicle:" v-bind:mockData="['Space Cruiser', 'Sand Crawler', 'Car']" />
+      <ButtonList title="Spaceship:" v-bind:mockData="['Space Cruiser']" openModal="DefaultModal" />
+      <ButtonList
+        title="Vehicle:"
+        v-bind:mockData="['Space Cruiser', 'Sand Crawler', 'Car']"
+        openModal="DefaultModal"
+      />
     </div>
   </div>
 </template>
@@ -76,7 +85,10 @@
 <script>
 import ContentHeader from "@/components/ContentHeader.vue";
 import ButtonList from "@/components/ButtonList.vue";
-import Modal from "@/components/Modal.vue";
+import AddEpisodesModal from "@/components/modal/AddEpisodesModal.vue";
+import AddCharactersModal from "@/components/modal/AddCharactersModal.vue";
+import AddLocationsModal from "@/components/modal/AddLocationsModal.vue";
+import DefaultModal from "@/components/modal/DefaultModal.vue";
 
 export default {
   name: "EpisodesDetails",
@@ -88,7 +100,10 @@ export default {
   components: {
     ContentHeader,
     ButtonList,
-    Modal
+    AddEpisodesModal,
+    AddCharactersModal,
+    AddLocationsModal,
+    DefaultModal
   },
   computed: {
     episodesDetails() {
@@ -97,7 +112,7 @@ export default {
     episodeImgUrls() {
       return this.$store.getters.getEpisodeImgUrls;
     },
-    modalStatus() {
+    activeModal() {
       return this.$store.getters.getModalStatus;
     }
   },

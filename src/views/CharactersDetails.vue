@@ -1,7 +1,10 @@
 <template>
   <div v-if="charactersDetails" class="characters-details">
     <!-- Modal -->
-    <Modal v-if="modalStatus" />
+    <AddEpisodesModal v-if="activeModal === 'AddEpisodesModal'" />
+    <AddCharactersModal v-if="activeModal === 'AddCharactersModal'" />
+    <AddLocationsModal v-if="activeModal === 'AddLocationsModal'" />
+    <DefaultModal v-if="activeModal === 'DefaultModal'" />
     <!-- Modal -->
 
     <ContentHeader topTitle="Charactersdetails" v-bind:mainTitle="charactersDetails.name" />
@@ -69,33 +72,50 @@
       <!-- own component -->
 
       <!-- Data from API  -->
-      <ButtonList title="Episodes:" v-bind:buttons="charactersDetails.episode" basePath="episodes" />
+      <ButtonList
+        title="Episodes:"
+        v-bind:buttons="charactersDetails.episode"
+        basePath="episodes"
+        openModal="AddEpisodesModal"
+      />
 
       <!-- Mocked data because API does not provide -->
       <ButtonList
         title="Locations:"
         v-bind:mockData="['Gromflom Prime', 'Giant\'s Town', 'Bird World', 'Earth (5-126)']"
+        openModal="AddLocationsModal"
       />
       <ButtonList
         title="Spaceship:"
         v-bind:mockData="['HMS', 'Battlecruiser', 'Executor', 'Death Start', 'Battleship', 'Shadow Glider']"
+        openModal="DefaultModal"
       />
-      <ButtonList title="Vehicles:" v-bind:mockData="['Sand Crawler', 'Moon Speeder', 'Bike']" />
+      <ButtonList
+        title="Vehicles:"
+        v-bind:mockData="['Sand Crawler', 'Moon Speeder', 'Bike']"
+        openModal="DefaultModal"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import ContentHeader from "@/components/ContentHeader.vue";
+import AddEpisodesModal from "@/components/modal/AddEpisodesModal.vue";
+import AddCharactersModal from "@/components/modal/AddCharactersModal.vue";
+import AddLocationsModal from "@/components/modal/AddLocationsModal.vue";
+import DefaultModal from "@/components/modal/DefaultModal.vue";
 import ButtonList from "@/components/ButtonList.vue";
-import Modal from "@/components/Modal.vue";
 
 export default {
   name: "CharactersDetails",
   components: {
     ContentHeader,
     ButtonList,
-    Modal
+    AddEpisodesModal,
+    AddCharactersModal,
+    AddLocationsModal,
+    DefaultModal
   },
   data() {
     return {
@@ -116,11 +136,11 @@ export default {
     };
   },
   computed: {
+    activeModal() {
+      return this.$store.getters.getModalStatus;
+    },
     charactersDetails() {
       return this.$store.getters.getCharactersDetails;
-    },
-    modalStatus() {
-      return this.$store.getters.getModalStatus;
     }
   },
   methods: {

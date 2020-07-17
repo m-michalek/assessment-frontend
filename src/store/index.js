@@ -13,7 +13,7 @@ export default new Vuex.Store({
     episodesDetails: null,
     locations: null,
     locationsDetails: null,
-    modalStatus: false,
+    activeModal: "",
     episodeImgUrls: [
       "https://vignette.wikia.nocookie.net/rickandmorty/images/4/4b/S1e1_Rick-and-morty.png/revision/latest?cb=20160904220006",
       "https://vignette.wikia.nocookie.net/rickandmorty/images/f/fb/Rixty_Minutes_Better_Picture.png/revision/latest?cb=20160917051511",
@@ -72,7 +72,7 @@ export default new Vuex.Store({
     fetchEpisodeById: (state, payload) => (state.episodesDetails = payload),
     fetchLocations: (state, payload) => (state.locations = payload),
     fetchLocationById: (state, payload) => (state.locationsDetails = payload),
-    toggleModal: (state) => (state.modalStatus = !state.modalStatus),
+    toggleModal: (state, payload) => (state.activeModal = payload),
   },
   actions: {
     fetchCharacters: async ({ commit }) => {
@@ -105,8 +105,10 @@ export default new Vuex.Store({
       );
       commit("fetchLocationById", response.data);
     },
-    toggleModal: async ({ commit }) => {
-      commit("toggleModal");
+    toggleModal: async ({ state, commit }, modalName) => {
+      state.activeModal === ""
+        ? commit("toggleModal", modalName)
+        : commit("toggleModal", "");
     },
   },
   getters: {
@@ -118,7 +120,7 @@ export default new Vuex.Store({
     getLocationsDetails: (state) => state.locationsDetails,
     getEpisodeImgUrls: (state) => state.episodeImgUrls,
     getLocationImgUrls: (state) => state.locationImgUrls,
-    getModalStatus: (state) => state.modalStatus,
+    getModalStatus: (state) => state.activeModal,
   },
   modules: {},
 });

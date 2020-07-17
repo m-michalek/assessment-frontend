@@ -60,12 +60,12 @@ svg {
 
 .up {
   top: -37px;
-  left: 127px;
+  left: 288px;
 }
 
 .down {
   top: -25px;
-  left: 117px;
+  left: 278px;
 }
 
 input {

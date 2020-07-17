@@ -1,7 +1,11 @@
 <template>
   <div v-if="locationsDetails" class="locations-details">
     <!-- Modal -->
-    <Modal v-if="modalStatus" />
+    <AddEpisodesModal v-if="activeModal === 'AddEpisodesModal'" />
+    <AddCharactersModal v-if="activeModal === 'AddCharactersModal'" />
+    <AddLocationsModal v-if="activeModal === 'AddLocationsModal'" />
+    <DefaultModal v-if="activeModal === 'DefaultModal'" />
+
     <!-- Modal -->
 
     <ContentHeader topTitle="Locationsdetails" v-bind:mainTitle="locationsDetails.name" />
@@ -56,10 +60,11 @@
         title="Residents:"
         v-bind:buttons="locationsDetails.residents"
         basePath="characters"
+        openModal="AddCharactersModal"
       />
 
       <!-- Mocked data because API does not provide -->
-      <ButtonList title="Vegetation:" v-bind:mockData="getRndVegetation()" />
+      <ButtonList title="Vegetation:" v-bind:mockData="rndVegetation" openModal="DefaultModal" />
     </div>
   </div>
 </template>
@@ -67,13 +72,17 @@
 <script>
 import ContentHeader from "@/components/ContentHeader.vue";
 import ButtonList from "@/components/ButtonList.vue";
-import Modal from "@/components/Modal.vue";
+import AddEpisodesModal from "@/components/modal/AddEpisodesModal.vue";
+import AddCharactersModal from "@/components/modal/AddCharactersModal.vue";
+import AddLocationsModal from "@/components/modal/AddLocationsModal.vue";
+import DefaultModal from "@/components/modal/DefaultModal.vue";
 
 export default {
   name: "LocationsDetails",
   data() {
     return {
       rndLocationImgUrl: null,
+      rndVegetation: null,
       vegetations: [
         "Tundra",
         "Northern coniferous forest",
@@ -89,7 +98,10 @@ export default {
   components: {
     ContentHeader,
     ButtonList,
-    Modal
+    AddEpisodesModal,
+    AddCharactersModal,
+    AddLocationsModal,
+    DefaultModal
   },
   computed: {
     locationsDetails() {
@@ -98,15 +110,8 @@ export default {
     locationImgUrls() {
       return this.$store.getters.getLocationImgUrls;
     },
-    modalStatus() {
+    activeModal() {
       return this.$store.getters.getModalStatus;
-    }
-  },
-  methods: {
-    getRndVegetation() {
-      return [
-        this.vegetations[Math.floor(Math.random() * this.vegetations.length)]
-      ];
     }
   },
   created() {
@@ -114,6 +119,10 @@ export default {
 
     this.rndLocationImgUrl = this.locationImgUrls[
       Math.floor(Math.random() * this.locationImgUrls.length)
+    ];
+
+    this.rndVegetation = [
+      this.vegetations[Math.floor(Math.random() * this.vegetations.length)]
     ];
   }
 };

@@ -9,12 +9,12 @@
           v-bind:to="`/${basePath}/details/${listItem.url.match(/(\d+)/)[0]}`"
         >{{ listItem.name }}</router-link>
       </div>
-      <div v-on:click="onButtonClicked()" class="btn mt-10">...</div>
+      <div v-on:click="onToggleModalButtonClicked()" class="btn mt-10">...</div>
     </div>
 
     <div v-else class="flex align-items-center sm-justify-content-center flex-wrap">
       <div v-for="(listItem, index) in mockData" v-bind:key="index" class="btn mt-10">{{ listItem }}</div>
-      <div v-on:click="onButtonClicked()" class="btn mt-10">...</div>
+      <div v-on:click="onToggleModalButtonClicked()" class="btn mt-10">...</div>
     </div>
   </div>
 </template>
@@ -34,11 +34,12 @@ export default {
     title: String,
     buttons: Array,
     mockData: Array,
-    basePath: String
+    basePath: String,
+    openModal: String
   },
   methods: {
-    onButtonClicked() {
-      this.$store.dispatch("toggleModal");
+    onToggleModalButtonClicked() {
+      this.$store.dispatch("toggleModal", this.openModal);
     }
   },
   async created() {
