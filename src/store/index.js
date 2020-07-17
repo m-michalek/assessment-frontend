@@ -6,7 +6,11 @@ import axios from "axios";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    characters: null,
+    episodes: null,
+    locations: null,
+  },
   mutations: {
     fetchCharacters: (state, payload) => (state.characters = payload),
     fetchEpisodes: (state, payload) => (state.episodes = payload),
